@@ -48,6 +48,7 @@
 #include "Vehicle.hpp"
 
 
+
 void display();
 void reshape(int width, int height);
 void idle();
@@ -60,6 +61,17 @@ void special_keyup(int keycode, int x, int y);
 void mouse(int button, int state, int x, int y);
 void dragged(int x, int y);
 void motion(int x, int y);
+
+//To get peoples components
+void CyclinderComponent(ShapeInit *parameter, float Radius, float Depth, bool Rolling, bool Steering);
+void rotationPart(ShapeInit *component, float Angle);
+void TrapezodialPrismComponent(ShapeInit *parameter, float a, float b, float Height, float Offcut, float Depth);
+void RectangularPrismComponent(ShapeInit *parameter, float Width, float Height, float Depth);
+void TriangularPrismComponent(ShapeInit *parameter, float a, float b, float Depth, float Angle);
+void PositionComponent(ShapeInit *parameter, float X, float Y, float Z);
+void ColourComponent(ShapeInit *parameter, float R, float B, float G);
+
+VehicleModel Group79Car();
 
 using namespace std;
 using namespace scos;
@@ -74,6 +86,12 @@ Vehicle * vehicle = NULL;
 double speed = 0;
 double steering = 0;
 
+//Car
+VehicleModel OurCar = Group79Car();
+ShapeInit toggledPart; 
+
+bool toggle = NULL;
+
 // default goal location
 std::deque<GoalState> goals;
 
@@ -81,73 +99,73 @@ std::map<int, Vehicle *> otherVehicles;
 
 int frameCounter = 0;
 
-/*
-VehicleModel OurCar() {
+
+
+VehicleModel Group79Car() {
 
 	VehicleModel OurCar;
-	ShapeInit parts;
+	ShapeInit components;
+	 
+	//Cart
+	RectangularPrismComponent(&components, 8.0, 4.0, 4.0);
+	rotationPart(&components, 0.0);
+	ColourComponent(&components, 1.0, 0.0, 0.0);
+	PositionComponent(&components, 0.0, 0.0, 0.0);
+	OurCar.shapes.push_back(components);
+	
+	TriangularPrismComponent(&components, 4.0, 4.0, 4.0, 45);
+	rotationPart(&components, 0.0);
+	ColourComponent(&components, 0.0, 1.0, 0.0);
+	PositionComponent(&components, 2.0, 0.0, 0.0);
+	OurCar.shapes.push_back(components);
+	
+	TrapezodialPrismComponent(&components, 4.0, 2.0, 4.0, 1.0, 4.0);
+	rotationPart(&components, 0.0);
+	ColourComponent(&components, 0.0, 0.0, 1.0);
+	PositionComponent(&components, 8.0, 0.0, 0.0);
+	OurCar.shapes.push_back(components);
+	
+	//Front Wheels
+	CyclinderComponent(&components, 1.0, 1.0,TRUE,TRUE);
+	rotationPart(&components, 0.0);
+	ColourComponent(&components, 1.0, 1.0, 1.0);
+	PositionComponent(&components, 8.0, 0.0, -2.5);
+	OurCar.shapes.push_back(components);
 
-	Shape *sh = NULL;
-	sh = new RectangularPrism(8.0, 4.0, 4.0);
-	sh->setRotation(0.0);
-	sh->setColor(0.0, 1.0, 0.0);
-	sh->setPosition(0.0, 0.0, 0.0);
-	addShape(sh);
-
-	sh = new TriangularPrism(4.0, 4.0, 4.0, 45);
-	sh->setRotation(0.0);
-	sh->setColor(1.0, 0.0, 0.0);
-	sh->setPosition(2.0, 0.0, 0.0);
-	addShape(sh);
-
-	sh = new TrapezodialPrism(4.0, 2.0, 4.0, 1.0, 4.0);
-	sh->setRotation(0.0);
-	sh->setColor(0.0, 0.0, 1.0);
-	sh->setPosition(8.0, 0.0, 0.0);
-	addShape(sh);
-	sh = new Cyclinder(1.0, 1.0);
-	sh->setRotation(0.0);
-	sh->setColor(1.0, 1.0, 1.0);
-	sh->setPosition(8.0, 0.0, -2.5);
-	addShape(sh);
-
-	sh = new Cyclinder(1.0, 1.0);
-	sh->setRotation(0.0);
-	sh->setColor(1.0, 1.0, 1.0);
-	sh->setPosition(8.0, 0.0, 1.5);
-	addShape(sh);
-
-	sh = new Cyclinder(1.0, 1.0);
-	sh->setRotation(0.0);
-	sh->setColor(1.0, 1.0, 1.0);
-	sh->setPosition(8.0, 0.0, 1.5);
-	addShape(sh);
+	CyclinderComponent(&components, 1.0, 1.0, TRUE, TRUE);
+	rotationPart(&components, 0.0);
+	ColourComponent(&components, 1.0, 1.0, 1.0);
+	PositionComponent(&components, 8.0, 0.0, 1.5);
+	OurCar.shapes.push_back(components);
 
 	//BackWheels
-	sh = new Cyclinder(1.0, 1.0);
-	sh->setRotation(0.0);
-	sh->setColor(.0, 0.0, 1.0);
-	sh->setPosition(0.0, 0.0, -2.5);
-	addShape(sh);
+	CyclinderComponent(&components, 1.0, 1.0, TRUE, FALSE);
+	rotationPart(&components, 0.0);
+	ColourComponent(&components, 0.0, 0.0, 1.0);
+	PositionComponent(&components, 0.0, 0.0, -2.5);
+	OurCar.shapes.push_back(components);
 
-	sh = new Cyclinder(1.0, 1.0);
-	sh->setRotation(0.0);
-	sh->setColor(0.0, 0.0, 1.0);
-	sh->setPosition(0.0, 0.0, 1.5);
-	addShape(sh);
-	sh = new Cyclinder(1.0, 1.0);
-	sh->setRotation(0.0);
-	sh->setColor(0.0, 0.0, 1.0);
-	sh->setPosition(-3.0, 0.0, -2.5);
-	addShape(sh);
+	CyclinderComponent(&components, 1.0, 1.0, TRUE, FALSE);
+	rotationPart(&components, 0.0);
+	ColourComponent(&components, 0.0, 0.0, 1.0);
+	PositionComponent(&components, 0.0, 0.0, 1.5);
+	OurCar.shapes.push_back(components);
 
-	sh = new Cyclinder(1.0, 1.0);
-	sh->setRotation(0.0);
-	sh->setColor(0.0, 0.0, 1.0);
-	sh->setPosition(-3.0, 0.0, 1.5);
-	addShape(sh);
+	CyclinderComponent(&components, 1.0, 1.0, TRUE, FALSE);
+	rotationPart(&components, 0.0);
+	ColourComponent(&components, 0.0, 0.0, 1.0);
+	PositionComponent(&components, -3.0, 0.0, -2.5);
+	OurCar.shapes.push_back(components);
+
+	CyclinderComponent(&components, 1.0, 1.0, TRUE, FALSE);
+	rotationPart(&components, 0.0);
+	ColourComponent(&components, 0.0, 0.0, 1.0);
+	PositionComponent(&components, -3.0, 0.0, 1.5);
+	OurCar.shapes.push_back(components);
+
+	return OurCar;
+	RemoteDataManager::Write(GetVehicleModelStr(OurCar));
 }
-*/
 
 //int _tmain(int argc, _TCHAR* argv[]) {
 int main(int argc, char ** argv) {
@@ -178,13 +196,14 @@ int main(int argc, char ** argv) {
 	glutMotionFunc(dragged);
 	glutPassiveMotionFunc(motion);
 
+	
 	// -------------------------------------------------------------------------
 	// Please uncomment the following line of code and replace 'MyVehicle'
 	//   with the name of the class you want to show as the current 
 	//   custom vehicle.
 	// -------------------------------------------------------------------------
 
-	vehicle = new MyVehicle();
+	vehicle = new MyVehicle(OurCar);
 
 
 	// add test obstacles
@@ -385,6 +404,9 @@ void idle() {
 					//
 					// student code goes here
 					//
+					
+					VehicleModel myCarToServer = Group79Car();
+					RemoteDataManager::Write(GetVehicleModelStr(myCarToServer));
 
 					RemoteDataManager::Write(GetVehicleModelStr(vm));
 				}
@@ -420,7 +442,7 @@ void idle() {
 								VehicleModel vm = models[i];
 								
 								// uncomment the line below to create remote vehicles
-								otherVehicles[vm.remoteID] = new MyVehicle();
+								otherVehicles[vm.remoteID] = new MyVehicle(vm);
 
 								//
 								// more student code goes here
@@ -574,5 +596,61 @@ void motion(int x, int y) {
 	prev_mouse_x = x;
 	prev_mouse_y = y;
 };
+
+// Component Gather Functions
+void CyclinderComponent(ShapeInit *parameter, float Radius, float Depth, bool Rolling, bool Steering)
+{
+	parameter->type = CYLINDER;
+	parameter->params.cyl.radius = Radius;
+	parameter->params.cyl.depth = Depth;
+	parameter->params.cyl.isRolling = Rolling;
+	parameter->params.cyl.isSteering = Steering;
+}
+
+void rotationPart(ShapeInit *parameter, float Angle)
+{
+	parameter->rotation = Angle;
+}
+
+void TrapezodialPrismComponent(ShapeInit *parameter, float a, float b, float Height, float Offcut, float Depth)
+{
+	parameter->type = TRAPEZOIDAL_PRISM;
+	parameter->params.trap.alen = a;
+	parameter->params.trap.blen = b;
+	parameter->params.trap.height = Height;
+	parameter->params.trap.aoff = Offcut;
+	parameter->params.trap.depth = Depth;
+}
+
+void RectangularPrismComponent(ShapeInit *parameter, float Width, float Height, float Depth)
+{
+	parameter->type = RECTANGULAR_PRISM;
+	parameter->params.rect.xlen = Width;
+	parameter->params.rect.ylen = Height;
+	parameter->params.rect.zlen = Depth;
+}
+
+void TriangularPrismComponent(ShapeInit *parameter, float a, float b, float Depth, float Angle)
+{
+	parameter->type = TRIANGULAR_PRISM;
+	parameter->params.tri.alen = a;
+	parameter->params.tri.blen = b;
+	parameter->params.tri.depth = Depth;
+	parameter->params.tri.angle = Angle;
+}
+
+void PositionComponent(ShapeInit *parameter, float X, float Y, float Z)
+{
+	parameter->xyz[0] = X;
+	parameter->xyz[1] = Y;
+	parameter->xyz[2] = Z;
+}
+
+void ColourComponent(ShapeInit *parameter, float R, float B, float G)
+{
+	parameter->rgb[0] = R;
+	parameter->rgb[1] = B;
+	parameter->rgb[2] = G;
+}
 
 

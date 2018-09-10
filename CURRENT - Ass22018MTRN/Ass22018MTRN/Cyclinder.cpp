@@ -12,6 +12,10 @@
 #include <math.h>
 #include "Cyclinder.h"
 
+#include "KeyManager.hpp"
+#include "Vehicle.hpp"
+#include "Messages.hpp"
+
 using namespace std;
 
 Cyclinder::Cyclinder()
@@ -71,6 +75,7 @@ void Cyclinder::draw()
 
 
 }
+
 void Cyclinder::getspeed(double RotRate,int time) 
 {
 	double prevtime = time - dt;

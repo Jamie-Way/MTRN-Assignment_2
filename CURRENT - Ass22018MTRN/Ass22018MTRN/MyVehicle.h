@@ -12,7 +12,7 @@ class MyVehicle : public Vehicle
 	VehicleModel model;
 
 public:
-	MyVehicle();
+	MyVehicle(VehicleModel Mode);
 	~MyVehicle();
 	VehicleModel GetModel();
 	void draw();

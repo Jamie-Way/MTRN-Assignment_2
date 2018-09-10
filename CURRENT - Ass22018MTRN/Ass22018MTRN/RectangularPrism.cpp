@@ -22,6 +22,7 @@ RectangularPrism::RectangularPrism(double length, double depth, double height)
 }
 void RectangularPrism::draw()
 {
+	glPushMatrix();
 	glColor3f(red, green, blue);
 	glTranslatef(x, y, z);
 	glRotatef(rotation, 0, 1, 0);
@@ -69,6 +70,7 @@ void RectangularPrism::draw()
 	glVertex3f(+Length / 2.0, 0.0, +Depth / 2.0);
 	glEnd();
 	glFlush();
+	glPushMatrix();
 }
 RectangularPrism::~RectangularPrism()
 {

@@ -24,6 +24,7 @@ TriangularPrism::TriangularPrism(double a, double b, double depth, double angle)
 }
 void TriangularPrism::draw()
 {
+	glPushMatrix();
 	glColor3f(red, green, blue);
 	glTranslatef(x, y, z);
 	glRotatef(rotation, 0, 1, 0);
@@ -64,6 +65,7 @@ void TriangularPrism::draw()
 	glVertex3f(A, 0.0, +Depth / 2.0);
 	glEnd();
 	glFlush();
+	glPopMatrix();
 }
 TriangularPrism::~TriangularPrism()
 {

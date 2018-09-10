@@ -24,6 +24,7 @@ TrapezodialPrism::TrapezodialPrism(double a, double b, double height, double off
 }
 void TrapezodialPrism::draw()
 {
+	glPushMatrix();
 	glColor3f(red, green, blue);
 	glTranslatef(x, y, z);
 	glRotatef(rotation, 0, 1, 0);
@@ -71,6 +72,7 @@ void TrapezodialPrism::draw()
 	glVertex3f((-A / 2.0) + OffCutA, Height, Depth / 2.0);			//point3
 	glEnd();
 	glFlush();
+	glPopMatrix();
 }
 TrapezodialPrism::~TrapezodialPrism()
 {
