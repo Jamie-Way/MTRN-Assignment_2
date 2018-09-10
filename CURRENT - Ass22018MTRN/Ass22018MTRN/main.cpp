@@ -40,6 +40,13 @@
 #include "ObstacleManager.hpp"
 
 #include "MyVehicle.h"
+#include <vector>
+#include "RectangularPrism.hpp"
+#include "TriangularPrism.h"
+#include "TrapezodialPrism.h"
+#include "Cyclinder.h"
+#include "Vehicle.hpp"
+
 
 void display();
 void reshape(int width, int height);
@@ -73,6 +80,74 @@ std::deque<GoalState> goals;
 std::map<int, Vehicle *> otherVehicles;
 
 int frameCounter = 0;
+
+/*
+VehicleModel OurCar() {
+
+	VehicleModel OurCar;
+	ShapeInit parts;
+
+	Shape *sh = NULL;
+	sh = new RectangularPrism(8.0, 4.0, 4.0);
+	sh->setRotation(0.0);
+	sh->setColor(0.0, 1.0, 0.0);
+	sh->setPosition(0.0, 0.0, 0.0);
+	addShape(sh);
+
+	sh = new TriangularPrism(4.0, 4.0, 4.0, 45);
+	sh->setRotation(0.0);
+	sh->setColor(1.0, 0.0, 0.0);
+	sh->setPosition(2.0, 0.0, 0.0);
+	addShape(sh);
+
+	sh = new TrapezodialPrism(4.0, 2.0, 4.0, 1.0, 4.0);
+	sh->setRotation(0.0);
+	sh->setColor(0.0, 0.0, 1.0);
+	sh->setPosition(8.0, 0.0, 0.0);
+	addShape(sh);
+	sh = new Cyclinder(1.0, 1.0);
+	sh->setRotation(0.0);
+	sh->setColor(1.0, 1.0, 1.0);
+	sh->setPosition(8.0, 0.0, -2.5);
+	addShape(sh);
+
+	sh = new Cyclinder(1.0, 1.0);
+	sh->setRotation(0.0);
+	sh->setColor(1.0, 1.0, 1.0);
+	sh->setPosition(8.0, 0.0, 1.5);
+	addShape(sh);
+
+	sh = new Cyclinder(1.0, 1.0);
+	sh->setRotation(0.0);
+	sh->setColor(1.0, 1.0, 1.0);
+	sh->setPosition(8.0, 0.0, 1.5);
+	addShape(sh);
+
+	//BackWheels
+	sh = new Cyclinder(1.0, 1.0);
+	sh->setRotation(0.0);
+	sh->setColor(.0, 0.0, 1.0);
+	sh->setPosition(0.0, 0.0, -2.5);
+	addShape(sh);
+
+	sh = new Cyclinder(1.0, 1.0);
+	sh->setRotation(0.0);
+	sh->setColor(0.0, 0.0, 1.0);
+	sh->setPosition(0.0, 0.0, 1.5);
+	addShape(sh);
+	sh = new Cyclinder(1.0, 1.0);
+	sh->setRotation(0.0);
+	sh->setColor(0.0, 0.0, 1.0);
+	sh->setPosition(-3.0, 0.0, -2.5);
+	addShape(sh);
+
+	sh = new Cyclinder(1.0, 1.0);
+	sh->setRotation(0.0);
+	sh->setColor(0.0, 0.0, 1.0);
+	sh->setPosition(-3.0, 0.0, 1.5);
+	addShape(sh);
+}
+*/
 
 //int _tmain(int argc, _TCHAR* argv[]) {
 int main(int argc, char ** argv) {
@@ -345,7 +420,7 @@ void idle() {
 								VehicleModel vm = models[i];
 								
 								// uncomment the line below to create remote vehicles
-								//otherVehicles[vm.remoteID] = new MyVehicle();
+								otherVehicles[vm.remoteID] = new MyVehicle();
 
 								//
 								// more student code goes here

@@ -66,7 +66,7 @@ void Cyclinder::draw()
 	//Barrel of wheels
 	gluQuadricNormals(pCyclinder, GLU_SMOOTH);
 	gluCylinder(pCyclinder, Radius, Radius, Depth, 20, 1);
-	gluDisk(pCyclinder, 0, Radius, 20, 1);
+	//gluDisk(pCyclinder, 0, Radius, 20, 1);
 	glFlush();
 
 
@@ -78,7 +78,6 @@ void Cyclinder::getspeed(double RotRate,int time)
 	Speed = Speed + ((RotRate*dt)/Radius);
 	while (Speed > 360) Speed -= 360;
 	while (Speed < 0) Speed += 360;
-	//glRotatef(RotRate*time, 0.0, 0.0, 1.0);
 	cout << Speed << endl;
 }
 Cyclinder::~Cyclinder()

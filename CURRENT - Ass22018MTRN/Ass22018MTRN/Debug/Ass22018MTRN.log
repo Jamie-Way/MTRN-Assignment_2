@@ -1,1 +1,4 @@
-﻿  Ass22018MTRN.vcxproj -> C:\Users\James\Documents\GitHub\MTRN-Assignment_2\CURRENT - Ass22018MTRN\Debug\Ass22018MTRN.exe
+﻿  main.cpp
+c:\users\samuel davidson\documents\github\mtrn-assignment_2\current - ass22018mtrn\ass22018mtrn\main.cpp(214): warning C4018: '<': signed/unsigned mismatch
+  Ass22018MTRN.vcxproj -> C:\Users\Samuel Davidson\Documents\GitHub\MTRN-Assignment_2\CURRENT - Ass22018MTRN\Debug\Ass22018MTRN.exe
+  Ass22018MTRN.vcxproj -> C:\Users\Samuel Davidson\Documents\GitHub\MTRN-Assignment_2\CURRENT - Ass22018MTRN\Debug\Ass22018MTRN.pdb (Partial PDB)
