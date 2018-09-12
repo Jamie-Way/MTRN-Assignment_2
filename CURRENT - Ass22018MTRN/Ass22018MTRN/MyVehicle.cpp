@@ -16,6 +16,7 @@
 #include "TrapezodialPrism.h"
 #include "Cyclinder.h"
 #include "Shape.hpp"
+#include "Messages.hpp"
 
 using namespace std;
 
@@ -97,25 +98,11 @@ void MyVehicle::draw()
 {
 	Shape *vm = NULL;
 	shapes.clear();
+	//<pRotation> = dynamic_cast<Cyclinder *>(*iter);
 
 	for (vector<ShapeInit>::iterator iter = model.shapes.begin(); iter != model.shapes.end(); ++iter)
 	{
 		switch (iter->type) {
-
-		case RECTANGULAR_PRISM:
-			vm = new RectangularPrism(iter->params.rect.xlen, iter->params.rect.zlen, iter->params.rect.ylen);
-			vm->setRotation(iter->rotation);
-			break;
-
-		case TRIANGULAR_PRISM:
-			vm = new TriangularPrism(iter->params.tri.alen, iter->params.tri.blen, iter->params.tri.depth, iter->params.tri.angle);
-			vm->setRotation(iter->rotation);
-			break;
-
-		case TRAPEZOIDAL_PRISM:
-			vm = new TrapezodialPrism(iter->params.trap.alen, iter->params.trap.blen, iter->params.trap.height, iter->params.trap.aoff, iter->params.trap.depth);
-			vm->setRotation(iter->rotation);
-			break;
 
 		case CYLINDER:
 			vm = new Cyclinder(iter->params.cyl.radius, iter->params.cyl.depth);
@@ -128,27 +115,66 @@ void MyVehicle::draw()
 			{
 				vm->setRotation(iter->rotation);
 			}
-			
+
 			if (iter->params.cyl.isRolling == true)
 			{
-				int time = glutGet(GLUT_ELAPSED_TIME);
+				//int time = glutGet(GLUT_ELAPSED_TIME);
 				//iter->Cyclinder::getspeed(speed,time);
+				//vm->setRotation(speed);
+				//positionInGL();
+				//glRotatef(speed, 0.0, 0.0, -1.0);
+				//pRotation->getspeed(speed, time);
+				//vm->glRotatef(speed, 0.0, 0.0, -1.0);
+
+
+				//gl.Translate(0.0,speed,0.0);
 			}
-			
 			break;
+
+		case RECTANGULAR_PRISM:
+			vm = new RectangularPrism(iter->params.rect.xlen, iter->params.rect.zlen, iter->params.rect.ylen);
+			vm->setRotation(iter->rotation);
+			break;
+
+		case TRIANGULAR_PRISM:
+			vm = new TriangularPrism(iter->params.tri.alen, iter->params.tri.blen, iter->params.tri.depth, iter->params.tri.angle);
+			vm->setRotation(iter->rotation);
+			break;
+			
+		case TRAPEZOIDAL_PRISM:
+			vm = new TrapezodialPrism(iter->params.trap.alen, iter->params.trap.blen, iter->params.trap.height, iter->params.trap.aoff, iter->params.trap.depth);
+			vm->setRotation(iter->rotation);
+			break;
+
+		
 		}
 		vm->setColor(iter->rgb[0], iter->rgb[1], iter->rgb[2]);
 		vm->setPosition(iter->xyz[0], iter->xyz[1], iter->xyz[2]);
 		addShape(vm);
+		
 	}
+	
 
 	for (vector<Shape*>::iterator iter = shapes.begin(); iter != shapes.end(); ++iter)
 	{
 		glPushMatrix();
-		glTranslated(x, y, z); 
-		glRotated(-rotation, 0, 1, -0);
+		positionInGL();
+		//glTranslated(x, y, z); 
+		//glRotated(-rotation, 0, 1, -0);
+		
+		Cyclinder *Cyl = dynamic_cast<Cyclinder*> (*iter);
+		if (Cyl != NULL)
+		{
+			int time = glutGet(GLUT_ELAPSED_TIME);
+			Cyl->getspeed(speed, time);
+			//glRotatef(speed*time, 0.0, 0.0, -1.0);
+		}
+
+
+
 		(*iter)->draw();
 		glPopMatrix();
+		
 	}
 }
 

@@ -110,32 +110,32 @@ VehicleModel Group79Car() {
 	RectangularPrismComponent(&components, 8.0, 4.0, 4.0);
 	rotationPart(&components, 0.0);
 	ColourComponent(&components, 1.0, 0.0, 0.0);
-	PositionComponent(&components, 0.0, 0.0, 0.0);
+	PositionComponent(&components, 0.0, 1.0, 0.0);
 	OurCar.shapes.push_back(components);
 	
-	TriangularPrismComponent(&components, 4.0, 4.0, 4.0, 45);
+	TriangularPrismComponent(&components, 8.0, 4.0, 4.0, 90);
 	rotationPart(&components, 0.0);
 	ColourComponent(&components, 0.0, 1.0, 0.0);
-	PositionComponent(&components, 2.0, 0.0, 0.0);
+	PositionComponent(&components, 3.0, 1.0, 0.0);
 	OurCar.shapes.push_back(components);
 	
 	TrapezodialPrismComponent(&components, 4.0, 2.0, 4.0, 1.0, 4.0);
 	rotationPart(&components, 0.0);
 	ColourComponent(&components, 0.0, 0.0, 1.0);
-	PositionComponent(&components, 8.0, 0.0, 0.0);
+	PositionComponent(&components, 8.0, 1.0, 0.0);
 	OurCar.shapes.push_back(components);
 	
 	//Front Wheels
 	CyclinderComponent(&components, 1.0, 1.0,TRUE,TRUE);
 	rotationPart(&components, 0.0);
 	ColourComponent(&components, 1.0, 1.0, 1.0);
-	PositionComponent(&components, 8.0, 0.0, -2.5);
+	PositionComponent(&components, 8.0, 0.0, 2.5);
 	OurCar.shapes.push_back(components);
 
 	CyclinderComponent(&components, 1.0, 1.0, TRUE, TRUE);
 	rotationPart(&components, 0.0);
 	ColourComponent(&components, 1.0, 1.0, 1.0);
-	PositionComponent(&components, 8.0, 0.0, 1.5);
+	PositionComponent(&components, 8.0, 0.0, -2.5);
 	OurCar.shapes.push_back(components);
 
 	//BackWheels
@@ -148,7 +148,7 @@ VehicleModel Group79Car() {
 	CyclinderComponent(&components, 1.0, 1.0, TRUE, FALSE);
 	rotationPart(&components, 0.0);
 	ColourComponent(&components, 0.0, 0.0, 1.0);
-	PositionComponent(&components, 0.0, 0.0, 1.5);
+	PositionComponent(&components, 0.0, 0.0, 2.5);
 	OurCar.shapes.push_back(components);
 
 	CyclinderComponent(&components, 1.0, 1.0, TRUE, FALSE);
@@ -160,7 +160,7 @@ VehicleModel Group79Car() {
 	CyclinderComponent(&components, 1.0, 1.0, TRUE, FALSE);
 	rotationPart(&components, 0.0);
 	ColourComponent(&components, 0.0, 0.0, 1.0);
-	PositionComponent(&components, -3.0, 0.0, 1.5);
+	PositionComponent(&components, -3.0, 0.0, 2.5);
 	OurCar.shapes.push_back(components);
 
 	return OurCar;
@@ -291,6 +291,9 @@ void display() {
 	// draw HUD
 	HUD::Draw();
 
+	//
+	Shape *sh = NULL;
+
 	glutSwapBuffers();
 };
 
@@ -400,15 +403,15 @@ void idle() {
 
 					VehicleModel vm;
 					vm.remoteID = 0;
-
+					OurCar.remoteID = 0;
 					//
 					// student code goes here
 					//
 					
-					VehicleModel myCarToServer = Group79Car();
-					RemoteDataManager::Write(GetVehicleModelStr(myCarToServer));
-
-					RemoteDataManager::Write(GetVehicleModelStr(vm));
+					//vm = Group79Car();
+					//RemoteDataManager::Write(GetVehicleModelStr(myCarToServer));
+					
+					RemoteDataManager::Write(GetVehicleModelStr(OurCar));
 				}
 			}
 		}
@@ -447,6 +450,7 @@ void idle() {
 								//
 								// more student code goes here
 								//
+
 							}
 							break;
 						}

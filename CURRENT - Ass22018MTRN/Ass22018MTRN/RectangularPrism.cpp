@@ -25,7 +25,9 @@ void RectangularPrism::draw()
 	glPushMatrix();
 	glColor3f(red, green, blue);
 	glTranslatef(x, y, z);
+	//glTranslatef(0.0, -0.8, 0.0);
 	glRotatef(rotation, 0, 1, 0);
+	
 
 	//Left Face
 	glBegin(GL_QUADS);
@@ -41,7 +43,7 @@ void RectangularPrism::draw()
 	glVertex3f(+Length / 2.0, Height, -Depth / 2.0);
 	glVertex3f(+Length / 2.0, 0.0, -Depth / 2.0);
 	glEnd();
-	//Top Face
+	//Top Faces
 	glBegin(GL_QUADS);
 	glVertex3f(-Length / 2.0, Height, Depth / 2.0);
 	glVertex3f(-Length / 2.0, Height, -Depth / 2.0);
@@ -70,7 +72,7 @@ void RectangularPrism::draw()
 	glVertex3f(+Length / 2.0, 0.0, +Depth / 2.0);
 	glEnd();
 	glFlush();
-	glPushMatrix();
+	glPopMatrix();
 }
 RectangularPrism::~RectangularPrism()
 {

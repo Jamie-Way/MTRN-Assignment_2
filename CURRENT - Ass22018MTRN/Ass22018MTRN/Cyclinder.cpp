@@ -29,12 +29,16 @@ Cyclinder::Cyclinder(double radius, double depth)
 	Depth = depth;
 	Speed = NULL;
 	Steer = NULL;
-	dt = 1.0;
+	dt = 1.0;	
+
 }
 void Cyclinder::draw()
 {
+	glPushMatrix();
 	glColor3f(red, green, blue);
 	glTranslatef(x, y, z);
+	glTranslatef(0.0, Radius, -Depth/2);
+
 	glRotatef(rotation, 0.0, 1.0, 0.0);
 
 	if (Speed != NULL)
@@ -72,7 +76,7 @@ void Cyclinder::draw()
 	gluCylinder(pCyclinder, Radius, Radius, Depth, 20, 1);
 	//gluDisk(pCyclinder, 0, Radius, 20, 1);
 	glFlush();
-
+	glPopMatrix();
 
 }
 

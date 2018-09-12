@@ -27,6 +27,7 @@ void TrapezodialPrism::draw()
 	glPushMatrix();
 	glColor3f(red, green, blue);
 	glTranslatef(x, y, z);
+	//glTranslatef(0.0, -0.8, 0.0);
 	glRotatef(rotation, 0, 1, 0);
 
 	//Left Face
