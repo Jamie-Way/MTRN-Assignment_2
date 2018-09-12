@@ -70,7 +70,7 @@ void RectangularPrism::draw()
 	glVertex3f(+Length / 2.0, 0.0, +Depth / 2.0);
 	glEnd();
 	glFlush();
-	glPushMatrix();
+	glPopMatrix();
 }
 RectangularPrism::~RectangularPrism()
 {
