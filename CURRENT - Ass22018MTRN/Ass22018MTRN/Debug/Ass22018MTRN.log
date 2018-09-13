@@ -1,12 +1,6 @@
-﻿  main.cpp
-c:\users\james\documents\github\mtrn-assignment_2\current - ass22018mtrn\ass22018mtrn\main.cpp(236): warning C4018: '<': signed/unsigned mismatch
+﻿  MyVehicle.cpp
   XboxController.cpp
+  main.cpp
+c:\users\james\documents\github\mtrn-assignment_2\current - ass22018mtrn\ass22018mtrn\main.cpp(236): warning C4018: '<': signed/unsigned mismatch
   Generating Code...
-main.obj : error LNK2019: unresolved external symbol _XInputGetState@8 referenced in function "public: virtual unsigned long __thiscall XInputWrapper::XInputGetState(unsigned long,struct _XINPUT_STATE *)" (?XInputGetState@XInputWrapper@@UAEKKPAU_XINPUT_STATE@@@Z)
-XboxController.obj : error LNK2001: unresolved external symbol _XInputGetState@8
-main.obj : error LNK2019: unresolved external symbol _XInputSetState@8 referenced in function "public: virtual unsigned long __thiscall XInputWrapper::XInputSetState(unsigned long,struct _XINPUT_VIBRATION *)" (?XInputSetState@XInputWrapper@@UAEKKPAU_XINPUT_VIBRATION@@@Z)
-XboxController.obj : error LNK2001: unresolved external symbol _XInputSetState@8
-main.obj : error LNK2019: unresolved external symbol _XInputGetCapabilities@12 referenced in function "public: virtual unsigned long __thiscall XInputWrapper::XInputGetCapabilities(unsigned long,unsigned long,struct _XINPUT_CAPABILITIES *)" (?XInputGetCapabilities@XInputWrapper@@UAEKKKPAU_XINPUT_CAPABILITIES@@@Z)
-main.obj : error LNK2019: unresolved external symbol _XInputGetBatteryInformation@12 referenced in function "public: virtual unsigned long __thiscall XInputWrapper::XInputGetBatteryInformation(unsigned long,unsigned char,struct _XINPUT_BATTERY_INFORMATION *)" (?XInputGetBatteryInformation@XInputWrapper@@UAEKKEPAU_XINPUT_BATTERY_INFORMATION@@@Z)
-main.obj : error LNK2019: unresolved external symbol _XInputGetKeystroke@12 referenced in function "public: virtual unsigned long __thiscall XInputWrapper::XInputGetKeystroke(unsigned long,unsigned long,struct _XINPUT_KEYSTROKE *)" (?XInputGetKeystroke@XInputWrapper@@UAEKKKPAU_XINPUT_KEYSTROKE@@@Z)
-C:\Users\James\Documents\GitHub\MTRN-Assignment_2\CURRENT - Ass22018MTRN\Debug\Ass22018MTRN.exe : fatal error LNK1120: 5 unresolved externals
+  Ass22018MTRN.vcxproj -> C:\Users\James\Documents\GitHub\MTRN-Assignment_2\CURRENT - Ass22018MTRN\Debug\Ass22018MTRN.exe
