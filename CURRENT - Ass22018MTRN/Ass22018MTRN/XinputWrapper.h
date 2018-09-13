@@ -3,6 +3,7 @@
 #ifndef XINPUT_WRAPPER_H
 #define XINPUT_WRAPPER_H
 
+
 #include <XInput.h>
 #include <errno.h>
 

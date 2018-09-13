@@ -1,6 +1,6 @@
-﻿  main.cpp
-c:\users\james\documents\github\mtrn-assignment_2\current - ass22018mtrn\ass22018mtrn\main.cpp(235): warning C4018: '<': signed/unsigned mismatch
-c:\users\james\documents\github\mtrn-assignment_2\current - ass22018mtrn\ass22018mtrn\main.cpp(341): error C2512: 'GamePad::XBoxController': no appropriate default constructor available
-  c:\users\james\documents\github\mtrn-assignment_2\current - ass22018mtrn\ass22018mtrn\xboxcontroller.h(35): note: see declaration of 'GamePad::XBoxController'
+﻿  MyVehicle.cpp
   XboxController.cpp
+  main.cpp
+c:\users\james\documents\github\mtrn-assignment_2\current - ass22018mtrn\ass22018mtrn\main.cpp(236): warning C4018: '<': signed/unsigned mismatch
   Generating Code...
+  Ass22018MTRN.vcxproj -> C:\Users\James\Documents\GitHub\MTRN-Assignment_2\CURRENT - Ass22018MTRN\Debug\Ass22018MTRN.exe
