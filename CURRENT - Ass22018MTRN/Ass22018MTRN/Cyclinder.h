@@ -17,7 +17,8 @@ public:
 	Cyclinder(double radius, double depth);
 	void draw();
 	void getspeed(double RotRate, int time);
-
+	double GetSpeed2();
+	double GetRadius();
 };
 #endif
 

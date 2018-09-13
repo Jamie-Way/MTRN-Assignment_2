@@ -88,29 +88,25 @@ void Cyclinder::getspeed(double RotRate,int time)
 	double prevtime = time - dt;
 	dt = time - prevtime;
 
-	double OurSpeed = Speed + ((RotRate*dt) / Radius);		//Speed of vehicle in meters per second
-	double circ = 2 * Radius * PI;							//Circumference of the wheel in meters
-	double RevSpeed = OurSpeed / circ;						//Calculates the number of revolutions of wheel per second
-	double RotationDeg = RevSpeed * 360;					//Amount of degrees that wheel must rotate in one second
+	Speed = Speed + ((RotRate*dt)/Radius);
+	
+	while (Speed > 360) Speed -= 360;
+	while (Speed < 0) Speed += 360;
 
-	double RotationCount = 0;								//Counter for the rotations completed
+	//Test Output
+	cout << Speed << endl;
+}
 
-	while (RotationDeg >= 0)
-	{
-		for (int i = 0; i = 360; i++)
-		{
-			Speed = i;
-		}
-
-		RotationDeg -= 360;
-		//cout << RotationCount << endl;
-	}
-	//Speed = Speed + ((RotRate*dt)/Radius);
-
-
-	//while (Speed > 360) Speed -= 360;
-	//while (Speed < 0) Speed += 360;
-	//cout << Radius << endl;
+//Used to get the current speed for use in wheel rotation
+double Cyclinder::GetSpeed2()
+{
+	double speed = Speed;
+	return speed;
+}
+double Cyclinder::GetRadius()
+{
+	double radius = Radius;
+	return radius;
 }
 Cyclinder::~Cyclinder()
 {

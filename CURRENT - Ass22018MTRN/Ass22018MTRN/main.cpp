@@ -47,7 +47,8 @@
 #include "Cyclinder.h"
 #include "Vehicle.hpp"
 
-#include "XboxController.cpp"
+#include "XboxController.h"
+#include <XInput.h>
 
 
 
@@ -338,7 +339,8 @@ double getTime()
 #endif
 }
 
-GamePad::XBoxController Xbox;
+XInputWrapper xinput;
+GamePad::XBoxController Xbox(&xinput, 0);
 
 void idle() {
 

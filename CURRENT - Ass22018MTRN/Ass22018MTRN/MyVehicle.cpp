@@ -18,6 +18,10 @@
 #include "Shape.hpp"
 #include "Messages.hpp"
 
+
+#define PI 3.14159;
+
+
 using namespace std;
 
 VehicleModel MyVehicle::GetModel()
@@ -154,6 +158,7 @@ void MyVehicle::draw()
 		
 	}
 	
+	int prevtime = 0;												//Is this the wrong place for this?
 
 	for (vector<Shape*>::iterator iter = shapes.begin(); iter != shapes.end(); ++iter)
 	{
@@ -163,10 +168,28 @@ void MyVehicle::draw()
 		//glRotated(-rotation, 0, 1, -0);
 		
 		Cyclinder *Cyl = dynamic_cast<Cyclinder*> (*iter);
+			
+
 		if (Cyl != NULL)
 		{
-			int time = glutGet(GLUT_ELAPSED_TIME);
-			Cyl->getspeed(speed, time);
+			int dt = 0;
+			int time = glutGet(GLUT_ELAPSED_TIME);					//Finds the current time since program started (in ms)
+			dt = time - prevtime;									//Time elapsed since last call
+
+			double speed = Cyl->GetSpeed2();						//Speed of vehicle in meters per second
+			double radius = Cyl->GetRadius();						//Radius of the wheel
+
+			double circ = 2 * radius * PI;							//Circumference of the wheel in meters (PI defined at top of page)
+			double RevSpeed = speed / circ;							//Calculates the number of revolutions of wheel per second
+			double RotationDeg = RevSpeed * 360;					//Amount of degrees that wheel must rotate in one second
+
+			if(dt == 1000) {										//Called every 1000ms
+				Cyl->getspeed(RotationDeg, time);					//Rotate wheel by this amount (might happen too quickly though)
+				dt = 0;												//Resets dt
+			}
+				
+			prevtime = time;										//Updates the previous time counter
+			//Cyl->getspeed(speed, time);
 			//glRotatef(speed*time, 0.0, 0.0, -1.0);
 		}
 
