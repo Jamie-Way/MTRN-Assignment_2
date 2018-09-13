@@ -370,11 +370,12 @@ void idle() {
 
 	speed = 0;
 	steering = 0;
+	int xboxControl = 0;	//Change this to 1 to enable the xbox controller
 
 	if (KeyManager::get()->isSpecialKeyPressed(GLUT_KEY_LEFT)) {
 		steering = Vehicle::MAX_LEFT_STEERING_DEGS * -1;   
 	}
-	else {
+	else if(xboxControl == 1){
 		float LeftTrigger = Xbox.LeftTriggerLocation();
 		steering = Vehicle::MAX_LEFT_STEERING_DEGS * LeftTrigger;
 	}
@@ -382,7 +383,7 @@ void idle() {
 	if (KeyManager::get()->isSpecialKeyPressed(GLUT_KEY_RIGHT)) {
 		steering = Vehicle::MAX_RIGHT_STEERING_DEGS * -1;
 	}
-	else {
+	else if (xboxControl == 1) {
 		float RightTrigger = Xbox.RightTriggerLocation();
 		steering = Vehicle::MAX_RIGHT_STEERING_DEGS * RightTrigger;
 	}
