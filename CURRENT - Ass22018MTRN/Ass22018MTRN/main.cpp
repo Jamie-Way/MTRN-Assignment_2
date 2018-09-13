@@ -47,6 +47,8 @@
 #include "Cyclinder.h"
 #include "Vehicle.hpp"
 
+#include "XboxController.cpp"
+
 
 
 void display();
@@ -336,29 +338,31 @@ double getTime()
 #endif
 }
 
+GamePad::XBoxController Xbox;
+
 void idle() {
 
-	if (KeyManager::get()->isAsciiKeyPressed('a')) {
+	if (KeyManager::get()->isAsciiKeyPressed('a') || (Xbox.PressedLeftDpad() == TRUE)) {
 		Camera::get()->strafeLeft();
 	}
 
-	if (KeyManager::get()->isAsciiKeyPressed('c')) {
+	if (KeyManager::get()->isAsciiKeyPressed('c') || (Xbox.PressedLeftShoulder() == TRUE)) {
 		Camera::get()->strafeDown();
 	}
 
-	if (KeyManager::get()->isAsciiKeyPressed('d')) {
+	if (KeyManager::get()->isAsciiKeyPressed('d') || (Xbox.PressedRightDpad() == TRUE)) {
 		Camera::get()->strafeRight();
 	}
 
-	if (KeyManager::get()->isAsciiKeyPressed('s')) {
+	if (KeyManager::get()->isAsciiKeyPressed('s') || (Xbox.PressedDownDpad() == TRUE)) {
 		Camera::get()->moveBackward();
 	}
 
-	if (KeyManager::get()->isAsciiKeyPressed('w')) {
+	if (KeyManager::get()->isAsciiKeyPressed('w') || (Xbox.PressedUpDpad() == TRUE)) {
 		Camera::get()->moveForward();
 	}
 
-	if (KeyManager::get()->isAsciiKeyPressed(' ')) {
+	if (KeyManager::get()->isAsciiKeyPressed(' ') || (Xbox.PressedRightShoulder() == TRUE)) {
 		Camera::get()->strafeUp();
 	}
 
@@ -368,16 +372,24 @@ void idle() {
 	if (KeyManager::get()->isSpecialKeyPressed(GLUT_KEY_LEFT)) {
 		steering = Vehicle::MAX_LEFT_STEERING_DEGS * -1;   
 	}
+	else {
+		float LeftTrigger = Xbox.LeftTriggerLocation();
+		steering = Vehicle::MAX_LEFT_STEERING_DEGS * LeftTrigger;
+	}
 
 	if (KeyManager::get()->isSpecialKeyPressed(GLUT_KEY_RIGHT)) {
 		steering = Vehicle::MAX_RIGHT_STEERING_DEGS * -1;
 	}
+	else {
+		float RightTrigger = Xbox.RightTriggerLocation();
+		steering = Vehicle::MAX_RIGHT_STEERING_DEGS * RightTrigger;
+	}
 
-	if (KeyManager::get()->isSpecialKeyPressed(GLUT_KEY_UP)) {
+	if (KeyManager::get()->isSpecialKeyPressed(GLUT_KEY_UP) || (Xbox.PressedA() == TRUE)) {
 		speed = Vehicle::MAX_FORWARD_SPEED_MPS;
 	}
 
-	if (KeyManager::get()->isSpecialKeyPressed(GLUT_KEY_DOWN)) {
+	if (KeyManager::get()->isSpecialKeyPressed(GLUT_KEY_DOWN) || (Xbox.PressedB() == TRUE)) {
 		speed = Vehicle::MAX_BACKWARD_SPEED_MPS;
 	}
 

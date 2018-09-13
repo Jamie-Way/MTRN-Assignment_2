@@ -161,6 +161,7 @@
     <ClCompile Include="TriangularPrism.cpp" />
     <ClCompile Include="VectorMaths.cpp" />
     <ClCompile Include="Vehicle.cpp" />
+    <ClCompile Include="XboxController.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.hpp" />
@@ -181,6 +182,8 @@
     <ClInclude Include="TriangularPrism.h" />
     <ClInclude Include="VectorMaths.hpp" />
     <ClInclude Include="Vehicle.hpp" />
+    <ClInclude Include="XboxController.h" />
+    <ClInclude Include="XinputWrapper.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
