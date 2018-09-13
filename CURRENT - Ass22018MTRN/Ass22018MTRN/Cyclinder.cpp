@@ -16,6 +16,8 @@
 #include "Vehicle.hpp"
 #include "Messages.hpp"
 
+#define PI 3.14159;
+
 using namespace std;
 
 Cyclinder::Cyclinder()
@@ -82,12 +84,33 @@ void Cyclinder::draw()
 
 void Cyclinder::getspeed(double RotRate,int time) 
 {
+	//WTF do these lines meant to do? Basically they are always setting dt = 1.0 for some reason
 	double prevtime = time - dt;
 	dt = time - prevtime;
-	Speed = Speed + ((RotRate*dt)/Radius);
-	while (Speed > 360) Speed -= 360;
-	while (Speed < 0) Speed += 360;
-	cout << Speed << endl;
+
+	double OurSpeed = Speed + ((RotRate*dt) / Radius);		//Speed of vehicle in meters per second
+	double circ = 2 * Radius * PI;							//Circumference of the wheel in meters
+	double RevSpeed = OurSpeed / circ;						//Calculates the number of revolutions of wheel per second
+	double RotationDeg = RevSpeed * 360;					//Amount of degrees that wheel must rotate in one second
+
+	double RotationCount = 0;								//Counter for the rotations completed
+
+	while (RotationDeg >= 0)
+	{
+		for (int i = 0; i = 360; i++)
+		{
+			Speed = i;
+		}
+
+		RotationDeg -= 360;
+		//cout << RotationCount << endl;
+	}
+	//Speed = Speed + ((RotRate*dt)/Radius);
+
+
+	//while (Speed > 360) Speed -= 360;
+	//while (Speed < 0) Speed += 360;
+	//cout << Radius << endl;
 }
 Cyclinder::~Cyclinder()
 {

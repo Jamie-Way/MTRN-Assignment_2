@@ -118,13 +118,13 @@ void MyVehicle::draw()
 
 			if (iter->params.cyl.isRolling == true)
 			{
-				//int time = glutGet(GLUT_ELAPSED_TIME);
-				//iter->Cyclinder::getspeed(speed,time);
-				//vm->setRotation(speed);
-				//positionInGL();
-				//glRotatef(speed, 0.0, 0.0, -1.0);
-				//pRotation->getspeed(speed, time);
-				//vm->glRotatef(speed, 0.0, 0.0, -1.0);
+				/*int time = glutGet(GLUT_ELAPSED_TIME);
+				iter->Cyclinder::getspeed(speed,time);
+				vm->setRotation(speed);
+				positionInGL();
+				glRotatef(speed, 0.0, 0.0, -1.0);
+				pRotation->getspeed(speed, time);
+				vm->glRotatef(speed, 0.0, 0.0, -1.0);*/
 
 
 				//gl.Translate(0.0,speed,0.0);
