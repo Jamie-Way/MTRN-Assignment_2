@@ -1,3 +1,8 @@
-﻿  MyVehicle.cpp
-  LINK : C:\Users\James\Documents\GitHub\MTRN-Assignment_2\CURRENT - Ass22018MTRN\Debug\Ass22018MTRN.exe not found or not built by the last incremental link; performing full link
-  Ass22018MTRN.vcxproj -> C:\Users\James\Documents\GitHub\MTRN-Assignment_2\CURRENT - Ass22018MTRN\Debug\Ass22018MTRN.exe
+﻿  main.cpp
+c:\users\samuel davidson\documents\github\mtrn-assignment_2\current - ass22018mtrn\ass22018mtrn\main.cpp(236): warning C4018: '<': signed/unsigned mismatch
+c:\users\samuel davidson\documents\github\mtrn-assignment_2\current - ass22018mtrn\ass22018mtrn\main.cpp(411): error C2065: 'autoDriver': undeclared identifier
+c:\users\samuel davidson\documents\github\mtrn-assignment_2\current - ass22018mtrn\ass22018mtrn\main.cpp(411): error C2228: left of '.x' must have class/struct/union
+  c:\users\samuel davidson\documents\github\mtrn-assignment_2\current - ass22018mtrn\ass22018mtrn\main.cpp(411): note: type is 'unknown-type'
+c:\users\samuel davidson\documents\github\mtrn-assignment_2\current - ass22018mtrn\ass22018mtrn\main.cpp(412): error C2065: 'autoDriver': undeclared identifier
+c:\users\samuel davidson\documents\github\mtrn-assignment_2\current - ass22018mtrn\ass22018mtrn\main.cpp(412): error C2228: left of '.z' must have class/struct/union
+  c:\users\samuel davidson\documents\github\mtrn-assignment_2\current - ass22018mtrn\ass22018mtrn\main.cpp(412): note: type is 'unknown-type'

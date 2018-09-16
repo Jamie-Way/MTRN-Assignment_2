@@ -396,6 +396,7 @@ void idle() {
 		speed = Vehicle::MAX_BACKWARD_SPEED_MPS;
 	}
 
+
 	// attempt to do data communications every 4 frames if we've created a local vehicle
 	if(frameCounter % 4 == 0 && vehicle != NULL) {
 

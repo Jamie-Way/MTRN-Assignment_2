@@ -76,24 +76,30 @@ void Cyclinder::draw()
 	//Barrel of wheels
 	gluQuadricNormals(pCyclinder, GLU_SMOOTH);
 	gluCylinder(pCyclinder, Radius, Radius, Depth, 20, 1);
-	//gluDisk(pCyclinder, 0, Radius, 20, 1);
+	gluDisk(pCyclinder, 0, Radius, 20, 1);
+	glTranslated(0, 0, Depth);
+	gluDisk(pCyclinder, 0, Radius, 20, 1);
+	glTranslated(0, 0, -Depth);
 	glFlush();
 	glPopMatrix();
 
 }
 
-void Cyclinder::getspeed(double RotRate,int time) 
+void Cyclinder::getspeed(double RotRate,int time)
 {
 	//WTF do these lines meant to do? Basically they are always setting dt = 1.0 for some reason
-	double prevtime = time - dt;
-	dt = time - prevtime;
+	//double prevtime = time - dt;
+	//dt = time - prevtime;
 
-	Speed = Speed + ((RotRate*dt)/Radius);
-	
-	while (Speed > 360) Speed -= 360;
-	while (Speed < 0) Speed += 360;
+	//Speed = Speed + ((RotRate*dt)/Radius);
+	//
+	/*while (Speed > 360) Speed -= 360;
+	while (Speed < 0) Speed += 360;*/
 
 	//Test Output
+	Speed = ((RotRate ) * time) / Radius;
+	while (Speed > 360) Speed -= 360;
+	while (Speed < 0) Speed += 360;
 	cout << Speed << endl;
 }
 
@@ -102,6 +108,7 @@ double Cyclinder::GetSpeed2()
 {
 	double speed = Speed;
 	return speed;
+
 }
 double Cyclinder::GetRadius()
 {
