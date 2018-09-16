@@ -116,7 +116,7 @@ VehicleModel Group79Car() {
 	PositionComponent(&components, 0.0, 1.0, 0.0);
 	OurCar.shapes.push_back(components);
 	
-	TriangularPrismComponent(&components, 8.0, 4.0, 4.0, 90);
+	TriangularPrismComponent(&components, 8.0, 4.0, 3.0, 90);
 	rotationPart(&components, 0.0);
 	ColourComponent(&components, 0.0, 1.0, 0.0);
 	PositionComponent(&components, 3.0, 1.0, 0.0);

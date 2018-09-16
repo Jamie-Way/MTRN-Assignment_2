@@ -38,17 +38,19 @@ void TriangularPrism::draw()
 
 	//Left Face
 	glBegin(GL_QUADS);
-	glVertex3f(A/2 - B*cos(Theta), B*sin(Theta), -Depth / 2.0);								//point 1
-	glVertex3f(A/2, 0, -Depth/2);			//point 3
-	glVertex3f(A / 2 - B*cos(Theta), B*sin(Theta), Depth / 2.0);								//point 4
-	glVertex3f(A/2.0, 0.0, Depth / 2.0);									//point 6
+	glVertex3f(A/2 - B*cos(Theta), B*sin(Theta), -Depth / 2.0);			//point 1
+	glVertex3f(A/2, 0, -Depth/2);										//point 3
+	glVertex3f(A / 2 - B*cos(Theta), B*sin(Theta), Depth / 2.0);		//point 4
+	glVertex3f(A/2.0, 0.0, Depth / 2.0);								//point 6
 	glEnd();
 	//RightFace
 	glBegin(GL_QUADS);
-	glVertex3f(-A/2, 0.0, -Depth / 2.0);								//point 5
+	
 	glVertex3f(-A/2, 0.0, Depth / 2.0);									//point 6
-	glVertex3f(A/2.0 - B * cos(Theta), B*sin(Theta), -Depth / 2.0); //point 3
-	glVertex3f(A/2.0 - B * cos(Theta), B*sin(Theta), Depth / 2.0);	//point 4
+	glVertex3f(-A / 2, 0.0, -Depth / 2.0);								//point 5
+	glVertex3f(A/2.0 - B * cos(Theta), B*sin(Theta), -Depth / 2.0);		//point 3
+	glVertex3f(A/2.0 - B * cos(Theta), B*sin(Theta), Depth / 2.0);		//point 4
+
 	glEnd();
 	//Bottom Face
 	glBegin(GL_QUADS);
@@ -60,7 +62,7 @@ void TriangularPrism::draw()
 	//Front Face
 	glBegin(GL_QUADS);
 	glVertex3f(A / 2.0, 0.0, -Depth / 2.0);								//point 1
-	glVertex3f(A/2.0 - B * cos(Theta),B*sin(Theta), -Depth / 2.0);	//point 3
+	glVertex3f(A/2.0 - B * cos(Theta),B*sin(Theta), -Depth / 2.0);		//point 3
 	glVertex3f(-A / 2, 0.0, -Depth / 2.0);								//point 5
 	glVertex3f(-A / 2, 0.0, -Depth / 2.0);								//point 5
 	glEnd();
@@ -69,7 +71,7 @@ void TriangularPrism::draw()
 	glVertex3f(A / 2.0, 0.0, +Depth / 2.0);								//point 1
 	glVertex3f(A / 2.0 - B * cos(Theta), B*sin(Theta), +Depth / 2.0);	//point 3
 	glVertex3f(-A / 2, 0.0, +Depth / 2.0);								//point 5
-	glVertex3f(-A / 2, 0.0, +Depth / 2.0);							//point 6
+	glVertex3f(-A / 2, 0.0, +Depth / 2.0);								//point 5
 	glEnd();
 	//glFlush();
 	glPopMatrix();

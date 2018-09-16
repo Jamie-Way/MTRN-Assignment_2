@@ -19,9 +19,6 @@
 #include "Messages.hpp"
 
 
-#define PI 3.14159;
-
-
 using namespace std;
 
 VehicleModel MyVehicle::GetModel()
@@ -31,71 +28,7 @@ VehicleModel MyVehicle::GetModel()
 
 MyVehicle::MyVehicle(VehicleModel Mode)
 {
-	model = Mode;
-	/*
-	Shape *sh = NULL;	
-	sh = new RectangularPrism(8.0, 4.0, 4.0);
-	sh->setRotation(0.0);
-	sh->setColor(0.0, 1.0, 0.0);
-	sh->setPosition(0.0, 0.0, 0.0);
-	addShape(sh);
-
-	sh = new TriangularPrism(4.0,4.0,4.0,45);
-	sh->setRotation(0.0);
-	sh->setColor(1.0, 0.0, 0.0);
-	sh->setPosition(2.0, 0.0, 0.0);
-	addShape(sh);
-
-	sh = new TrapezodialPrism(4.0, 2.0, 4.0, 1.0, 4.0);
-	sh->setRotation(0.0);
-	sh->setColor(0.0, 0.0, 1.0);
-	sh->setPosition(8.0, 0.0, 0.0);
-	addShape(sh);
-
-	//Front Wheels
-	sh = new Cyclinder(1.0, 1.0);
-	sh->setRotation(0.0);
-	sh->setColor(1.0, 1.0, 1.0);
-	sh->setPosition(8.0, 0.0, -2.5);
-	addShape(sh);
-
-	sh = new Cyclinder(1.0, 1.0);
-	sh->setRotation(0.0);
-	sh->setColor(1.0, 1.0, 1.0);
-	sh->setPosition(8.0, 0.0, 1.5);
-	addShape(sh);
-
-	sh = new Cyclinder(1.0, 1.0);
-	sh->setRotation(0.0);
-	sh->setColor(1.0, 1.0, 1.0);
-	sh->setPosition(8.0, 0.0, 1.5);
-	addShape(sh);
-
-	//BackWheels
-	sh = new Cyclinder(1.0, 1.0);
-	sh->setRotation(0.0);
-	sh->setColor(.0, 0.0, 1.0);
-	sh->setPosition(0.0, 0.0, -2.5);
-	addShape(sh);
-
-	sh = new Cyclinder(1.0, 1.0);
-	sh->setRotation(0.0);
-	sh->setColor(0.0, 0.0, 1.0);
-	sh->setPosition(0.0, 0.0, 1.5);
-	addShape(sh);
-
-	sh = new Cyclinder(1.0, 1.0);
-	sh->setRotation(0.0);
-	sh->setColor(0.0, 0.0, 1.0);
-	sh->setPosition(-3.0, 0.0, -2.5);
-	addShape(sh);
-
-	sh = new Cyclinder(1.0, 1.0);
-	sh->setRotation(0.0);
-	sh->setColor(0.0, 0.0, 1.0);
-	sh->setPosition(-3.0, 0.0, 1.5);
-	addShape(sh);
-	*/
+	model = Mode;	
 }
 
 void MyVehicle::draw()
@@ -122,18 +55,7 @@ void MyVehicle::draw()
 
 			if (iter->params.cyl.isRolling == true)
 			{
-				//int time = glutGet(GLUT_ELAPSED_TIME);
-				////iter->Cyclinder::getspeed(speed,time);
-				//pRotation->getspeed(speed,time, iter->params.cyl.radius);
-				//positionInGL();
-				//glRotatef(speed, 0.0, 0.0, -1.0);
-				//pRotation->getspeed(speed, time);
-				//vm->glRotatef(speed, 0.0, 0.0, -1.0);*/
-
 				rolling = 1;
-				//gl.Translate(0.0,speed,0.0);
-
-
 			}
 			else
 			{
@@ -164,20 +86,14 @@ void MyVehicle::draw()
 		addShape(vm);
 
 	}
-
-	int prevtime = 0;												//Is this the wrong place for this?
-
+	
 	for (vector<Shape*>::iterator iter = shapes.begin(); iter != shapes.end(); ++iter)
 	{
 		glPushMatrix();
 		positionInGL();
-		//glTranslated(x, y, z); 
-		//glRotated(-rotation, 0, 1, -0);
-
 
 		Cyclinder *psteer;
 		Cyclinder *pRotation;
-		//psteer = dynamic_cast<Cyclinder *>(*iter);
 		pRotation = dynamic_cast<Cyclinder *>(*iter);
 		if (psteer = dynamic_cast<Cyclinder *>(*iter))
 		{
@@ -195,73 +111,6 @@ void MyVehicle::draw()
 		glPopMatrix();
 	}
 }
-			
-	//	<pRotation> = dynamic_cast<Cyclinder *>(*iter);
-
-
-		//if (iter->params.cyl.isRolling == true)
-		
-			//int time = glutGet(GLUT_ELAPSED_TIME);
-			////iter->Cyclinder::getspeed(speed,time);
-			//pRotation->getspeed(speed, time, iter->params.cyl.radius);
-		//	//int dt = 0;
-		//	//dt = time - prevtime;									//Time elapsed since last call
-
-		//	//double speed = Cyl->GetSpeed2();						//Speed of vehicle in meters per second
-		//	//double radius = Cyl->GetRadius();						//Radius of the wheel
-
-		//	//double circ = 2 * radius * PI;							//Circumference of the wheel in meters (PI defined at top of page)
-		//	//double RevSpeed = speed / circ;							//Calculates the number of revolutions of wheel per second
-		//	//double RotationDeg = RevSpeed * 360;					//Amount of degrees that wheel must rotate in one second
-
-		//	//if(dt == 1000) {										//Called every 1000ms
-		//	//	Cyl->getspeed(RotationDeg, time);					//Rotate wheel by this amount (might happen too quickly though)
-		//	//	dt = 0;												//Resets dt
-		//	//}
-		//		
-		//	//prevtime = time;										//Updates the previous time counter
-		//	//Cyl->getspeed(speed, time);
-		//	//glRotatef(speed*time, 0.0, 0.0, -1.0);
-		
-
-		//getSpeed
-
-		//(*iter)->draw();
-		//glPopMatrix();
-		
-
-
-/*
-for (vector<Shape*>::iterator iter = shapes.begin(); iter != shapes.end(); ++iter)
-	{
-		glPushMatrix();
-		positionInGL();
-		// move to the vehicle’s local frame of reference
-		//Cyclinder *psteer;
-		////psteer = dynamic_cast<Cyclinder *>(*iter);
-		//pRotation = dynamic_cast<Cyclinder *>(*iter);
-		//if (psteer = dynamic_cast<Cyclinder *>(*iter))
-		//{
-		//	//If wheel is red and blue they it is a front wheel and steers
-		//	if (psteer->getRed() == 1.0)
-		//	{
-		//		psteer->setRotation(-steering);
-		//	}
-		//	if (psteer->getBlue() == 1.0)
-		//	{
-		//		int time = glutGet(GLUT_ELAPSED_TIME);
-		//		pRotation->getspeed(speed, time);
-		//	}
-
-		//}
-
-		// all the local drawing code
-		(*iter)->draw();
-		// move back to global frame of reference
-		glPopMatrix();
-	}
-}
-*/
 
 MyVehicle::~MyVehicle()
 {
